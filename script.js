@@ -28,8 +28,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const durationSpan = document.createElement('span');
             durationSpan.textContent = ` (${taskDuration} minutes)`;
+            
+            // Create a button for task completion
+            const completeButton = document.createElement('button');
+            completeButton.textContent = 'Complete';
+            completeButton.addEventListener('click', function() {
+                // Toggle the completion status
+                li.classList.toggle('completed');
+                // Display congratulatory message
+                congratsMessage.textContent = 'Congratulations for completing the task!';
+                congratsMessage.style.display = 'block';
+                audio.play(); // Play the audio
+
+                // Hide message after 3 seconds
+                setTimeout(function() {
+                    congratsMessage.style.display = 'none';
+                }, 3000);
+            });
+
             li.appendChild(taskSpan);
             li.appendChild(durationSpan);
+            li.appendChild(completeButton); // Append the complete button
             taskList.appendChild(li);
             taskInput.value = '';
 

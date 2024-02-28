@@ -1,25 +1,37 @@
 function redirectTo(provider) {
-    // Define redirection URLs based on the provider
-    let redirectURL = '';
+    let email;
+    if (provider === 'email' || provider === 'signup') {
+        // Prompt the user to enter their email
+        email = prompt('Please enter your email:');
+        if (!email) {
+            // If the user cancels the prompt or leaves it blank, do not proceed
+            return;
+        }
+    }
+
+    // Define the URL to redirect based on the provider
+    let redirectURL;
     switch (provider) {
         case 'facebook':
-            redirectURL = 'https://www.facebook.com'; // Redirect to Facebook
+            redirectURL = 'index.html'; // Redirect to index.html for Facebook login
             break;
         case 'google':
-            redirectURL = 'https://www.google.com'; // Redirect to Google
+            redirectURL = 'index.html'; // Redirect to index.html for Google login
             break;
         case 'apple':
-            redirectURL = 'https://www.apple.com'; // Redirect to Apple
+            redirectURL = 'index.html'; // Redirect to index.html for Apple login
             break;
         case 'email':
-            redirectURL = 'login_with_email.html'; // Redirect to email login page
+            redirectURL = 'index.html'; // Redirect to index.html for Email login
             break;
         case 'signup':
-            redirectURL = 'sign_up_with_email.html'; // Redirect to email sign up page
+            redirectURL = 'index.html'; // Redirect to index.html for Sign Up
             break;
         default:
-            redirectURL = 'index.html'; // Redirect to the default index page
+            redirectURL = 'index.html'; // Default redirect to index.html
+            break;
     }
-    // Redirect the user to the appropriate page
+
+    // Redirect the user to the specified URL
     window.location.href = redirectURL;
 }
